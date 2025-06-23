@@ -30,4 +30,4 @@ En desarrollo.
 - **Java 8** 
 - **JUnit 5** para pruebas unitarias  
 - **Git y GitHub** para control de versiones  
-- **Freedcamp** para la gestión del proyecto 
+- **Freedcamp** para la gestión del proyecto https://freedcamp.com/view/3600575/tasks
