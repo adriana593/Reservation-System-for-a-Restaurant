@@ -1,5 +1,5 @@
 package Domain;
-
+//Esta clase sigue el principio Single Responsibility (SRP), ya que su responsabilidad es únicamente representar los datos de una reserva. Además, trabaja con un tipo EStatus, lo que ayuda a centralizar el manejo de estado.
 public class Reservation {
     private String IDReservation;
     private String customerName;
@@ -8,6 +8,7 @@ public class Reservation {
     private Time time;
     private EStatus status;
     
+    //Constructor: responsabilidad única, solo inicializa los datos de la reserva.
     public Reservation (String ID, String customerName, int numberOfPeople, Date date, Time time){
         this.IDReservation = ID;
         this.customerName = customerName;
@@ -15,10 +16,12 @@ public class Reservation {
         this.numberOfPeople = numberOfPeople;
         this.time = time;
         
+        //Se establece un estado inicial ("Pendiente")
         this.status = EStatus.Pendiente;
        
     }
 
+    //Getters setters: permiten el acceso y modificación de los atributos sin violar la encapsulación
     public String getIDReservation() {
         return IDReservation;
     }
