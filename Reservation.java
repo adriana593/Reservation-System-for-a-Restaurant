@@ -1,70 +1,70 @@
 package Domain;
 
 public class Reservation {
-    private String IDR;
-    private String cN;
-    private int nOP;
-    private Date d;
-    private Time t;
-    private EStatus s;
+    private String IDReservation;
+    private String customerName;
+    private int numberOfPeople;
+    private Date date;
+    private Time time;
+    private EStatus status;
     
-    public Reservation (String ID, String cN, int nOP, Date d, Time t){
-        this.IDR = ID;
-        this.cN = cN;
-        this.d = d;
-        this.nOP = nOP;
-        this.t = t;
+    public Reservation (String ID, String customerName, int numberOfPeople, Date date, Time time){
+        this.IDReservation = ID;
+        this.customerName = customerName;
+        this.date = date;
+        this.numberOfPeople = numberOfPeople;
+        this.time = time;
         
-        this.s = EStatus.Pendiente;
+        this.status = EStatus.Pendiente;
        
     }
 
-    public String getIDR() {
-        return IDR;
+    public String getIDReservation() {
+        return IDReservation;
     }
 
-    public void setIDR(String ID) {
-        this.IDR = ID;
+    public void setIDReservation(String ID) {
+        this.IDReservation = ID;
     }
 
-    public String getCN() {
-        return cN;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCN(String cN) {
-        this.cN = cN;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public int getNOP() {
-        return nOP;
+    public int getNumberOfPeople() {
+        return numberOfPeople;
     }
 
-    public void setNOP(int nOP) {
-        this.nOP = nOP;
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
     }
 
-    public Date getD() {
-        return d;
+    public Date getDate() {
+        return date;
     }
 
-    public void setD(Date d) {
-        this.d = d;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Time getT() {
-        return t;
+    public Time getTime() {
+        return time;
     }
 
-    public void setT(Time t) {
-        this.t = t;
+    public void setTime(Time time) {
+        this.time = time;
     }
 
-    public EStatus getS() {
-        return s;
+    public EStatus getStatus() {
+        return status;
     }
 
-    public void setS(EStatus s) {
-        this.s = s;
+    public void setStatus(EStatus status) {
+        this.status = status;
     }
     
     
