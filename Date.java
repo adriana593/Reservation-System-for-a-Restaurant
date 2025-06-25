@@ -1,61 +1,61 @@
 package Domain;
 public class Date {
-   private int y ;
-   private int m;
-   private int d;
+   private int year ;
+   private int month;
+   private int day;
 
-    public Date(int d, int m, int y) {
-        if (d >= 1 && d <= dayInMonth(y, m)) 
-         this.d = d;
-        if(m >= 1 && m <=12)
-         this.m = m;
-        if(y >= 2025)
-         this.y = y;
+    public Date(int day, int month, int year) {
+        if (day >= 1 && day <= dayInMonth(year, month)) 
+         this.day = day;
+        if(month >= 1 && month <=12)
+         this.month = month;
+        if(year >= 2025)
+         this.year = year;
        
         
     }
 
     public int getYear() {
-        return y;
+        return year;
     }
 
-    public void setYear(int y) {
-        if(y >= 2025)
-         this.y = y;
+    public void setYear(int year) {
+        if(year >= 2025)
+         this.year = year;
     }
 
     public int getMonth() {
-        return m;
+        return month;
     }
 
-    public void setMonth(int m) {
-        if (m >= 1 && m <= 12)
-         this.m = m;
+    public void setMonth(int month) {
+        if (month >= 1 && month <= 12)
+         this.month = month;
     }
 
     public int getDay() {
-        return d;
+        return day;
     }
 
-    public void setDay(int d) {
-        if (d >= 1 && d <= dayInMonth(y, m)) 
-        this.d = d;
+    public void setDay(int day) {
+        if (day >= 1 && day <= dayInMonth(year, month)) 
+        this.day = day;
         
     }
     
     @Override
     public String toString(){
-        return d + "-" +m+ "-" +y;
+        return day + "-" +month+ "-" +year;
     }
     
-    private int dayInMonth(int y, int m){
-        switch(m){
+    private int dayInMonth(int year, int month){
+        switch(month){
             case 4: case 6: case 9: case 11: return 30;
-            case 2: return (isLeapYear(y)? 29 : 28);
+            case 2: return (isLeapYear(year)? 29 : 28);
                 default: return 31;        
         }
     }
-    private boolean isLeapYear(int y){
-        return (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+    private boolean isLeapYear(int year){
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 }
