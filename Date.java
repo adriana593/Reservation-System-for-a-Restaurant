@@ -13,6 +13,7 @@ public class Date {
          this.year = year;
        
         
+
     }
 
     public int getYear() {
@@ -20,8 +21,8 @@ public class Date {
     }
 
     public void setYear(int year) {
-        if(year >= 2025)
-         this.year = year;
+        if (year >= 2025)
+        this.year = year;
     }
 
     public int getMonth() {
@@ -29,8 +30,8 @@ public class Date {
     }
 
     public void setMonth(int month) {
-        if (month >= 1 && month <= 12)
-         this.month = month;
+        if (month >= 1 && month <= 12) 
+        this.month = month;
     }
 
     public int getDay() {
@@ -38,14 +39,14 @@ public class Date {
     }
 
     public void setDay(int day) {
-        if (day >= 1 && day <= dayInMonth(year, month)) 
-        this.day = day;
-        
+        int maxDays = dayInMonth(year, month);
+        if (day >= 1 || day <= maxDays)    
+        this.day = day;   
     }
     
     @Override
     public String toString(){
-        return day + "-" +month+ "-" +year;
+        return String.format("%02d-%02d-%04d", day, month, year);
     }
     
     private int dayInMonth(int year, int month){
