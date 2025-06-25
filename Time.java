@@ -1,35 +1,35 @@
 
 package Domain;
 public class Time {
-    private int h ;
-    private int m;
+    private int hour ;
+    private int minute;
 
-    public Time(int h, int m) {
-        if( h >= 0 && h <= 23)
-         this.h = h;
-        if(m >= 0 && m <= 59)
-         this.m = m;
+    public Time(int hour, int minute) {
+        if( hour >= 0 && hour <= 23)
+         this.hour = hour;
+        if(minute >= 0 && minute <= 59)
+         this.minute = minute;
     }
 
-    public int getH() {
-        return h;
+    public int getHour() {
+        return hour;
     }
 
-    public void setH(int h) {
-        if( h >= 0 && h <= 23)
-         this.h = h;
+    public void setHour(int hour) {
+        if( hour >= 0 && hour <= 23)
+         this.hour = hour;
     }
 
-    public int getM() {
-        return m;
+    public int getMinute() {
+        return minute;
     }
 
-    public void setM(int m) {
-        if(m >= 0 && m <= 59)
-         this.m = m;
+    public void setMinute(int minute) {
+        if(minute >= 0 && minute <= 59)
+         this.minute = minute;
     }
     @Override
     public String toString(){
-        return h + ":" + m;
+        return hour + ":" + minute;
     }
 }
