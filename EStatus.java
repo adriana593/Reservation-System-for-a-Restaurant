@@ -5,16 +5,16 @@ public enum EStatus {
     Cancelada ("Cancelada");
     
     
-    public String c;
+    public String condition;
     
     private EStatus(String condition){
-        this.c = c;
+        this.condition = condition;
     }
     public void setStatus(String condition){
-        this.c = c;
+        this.condition = condition;
     }
     public String getStatus(){
-        return c;
+        return condition;
     }
 }
 
