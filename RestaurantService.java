@@ -31,7 +31,7 @@ public class RestaurantService implements IServices {
     public boolean addReservation(Reservation reservation) {
          return reservations.add(reservation);
     }
-    
+
     @Override
     public boolean updateReservation(String id, String customerName, int numberOfPeople, Date date, Time time) {
         int index =searchID(id);
@@ -44,10 +44,33 @@ public class RestaurantService implements IServices {
             return true;
         }else{
             return false;
+        }   
+    }
+
+    @Override
+    public boolean confirmReservation(String id) { 
+        int index = searchID(id);
+           if(index >=0){
+            Reservation reservation = reservations.get(index);
+            reservation.setStatus(EStatus.Confirmada);
+            return true;
+        }else{
+                return false;
+        }        
+    }
+
+    @Override
+    public boolean cancelReservation(String id) {
+        int index = searchID(id);
+        if (index < 0) {
+            reservations.remove(index);
+            return true;
+        }else{ 
+            return false; 
         }
     }
-        
-        private int searchID(String id){
+
+    private int searchID(String id) {
         Reservation key = new Reservation(id, null,-1, null, null);
         Comparator<Reservation> c = new Comparator<Reservation>(){
             @Override
@@ -58,5 +81,16 @@ public class RestaurantService implements IServices {
         Collections.sort(reservations, c);
         return Collections.binarySearch(reservations,key, c);       
     }
-          
+    
+
+    @Override
+    public Reservation getReservation(String id) {
+         int index = searchID(id);
+            if(index >= 0){
+                return reservations.get(index);
+            }else{
+            return null;
+        }
+    }
+
 }
