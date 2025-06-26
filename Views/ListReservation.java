@@ -6,20 +6,21 @@
 
 package Views;
 
-
+import java.awt.Color;
 
 /**
  *
  * @author HP
  */
 public class ListReservation extends javax.swing.JDialog {
-    
+    int xMouse , yMouse;
     /**
      * Creates new form ListReservation
      */
     public ListReservation(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(parent);
     }
 
     /**
@@ -148,23 +149,28 @@ public class ListReservation extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void outTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outTxtMouseClicked
-        
+        outBtn.setBackground(new Color(229,127,95));
+        outTxt.setForeground(Color.white);
     }//GEN-LAST:event_outTxtMouseClicked
 
     private void outTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outTxtMouseEntered
-      
+        outBtn.setBackground(new Color(229,180,139));
+        outTxt.setForeground(Color.black);
     }//GEN-LAST:event_outTxtMouseEntered
 
     private void outTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outTxtMouseExited
-       
+       this.setVisible(false);
     }//GEN-LAST:event_outTxtMouseExited
 
     private void barMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barMouseDragged
-      
+       int x = evt.getXOnScreen();
+       int y = evt.getYOnScreen();
+       this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_barMouseDragged
 
     private void barMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barMousePressed
-       
+       xMouse = evt.getX();
+       yMouse = evt.getY();
     }//GEN-LAST:event_barMousePressed
 
     /**

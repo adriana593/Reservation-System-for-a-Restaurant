@@ -7,7 +7,7 @@
 package Views;
 
 
-
+import java.awt.Color;
 
 /**
  *
@@ -15,7 +15,7 @@ package Views;
  */
 public class FrameMain extends javax.swing.JFrame {
        
-    
+    int xMouse , yMouse;
     public FrameMain() {
         initComponents();
     }
@@ -294,23 +294,28 @@ public class FrameMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseClicked
-       
+        System.exit(-1);
     }//GEN-LAST:event_salirTxtMouseClicked
 
     private void salirTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseEntered
-       
+        outBtn.setBackground(new Color(229,127,95));
+        salirTxt.setForeground(Color.white);
     }//GEN-LAST:event_salirTxtMouseEntered
 
     private void salirTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseExited
-       
+        outBtn.setBackground(Color.white);
+        salirTxt.setForeground(Color.black);
     }//GEN-LAST:event_salirTxtMouseExited
 
     private void moveFrameMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveFrameMouseDragged
-        
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_moveFrameMouseDragged
 
     private void moveFrameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_moveFrameMousePressed
-       
+        xMouse = evt.getX();
+        yMouse = evt.getY();
     }//GEN-LAST:event_moveFrameMousePressed
 
     private void cancelTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelTxtMouseClicked
@@ -318,11 +323,11 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelTxtMouseClicked
 
     private void cancelTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelTxtMouseEntered
-       
+        cancelBtn.setBackground(new Color(247, 194, 150));
     }//GEN-LAST:event_cancelTxtMouseEntered
 
     private void cancelTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelTxtMouseExited
-       
+        cancelBtn.setBackground(new Color(229,180,139));
     }//GEN-LAST:event_cancelTxtMouseExited
 
     private void addTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTxtMouseClicked
@@ -330,11 +335,11 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_addTxtMouseClicked
 
     private void addTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTxtMouseEntered
-      
+        addBtn.setBackground(new Color(247, 194, 150));
     }//GEN-LAST:event_addTxtMouseEntered
 
     private void addTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTxtMouseExited
-        
+        addBtn.setBackground(new Color(229,180,139));
     }//GEN-LAST:event_addTxtMouseExited
 
     private void confirmTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseClicked
@@ -342,11 +347,11 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmTxtMouseClicked
 
     private void confirmTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseEntered
-        
+        confirmBtn.setBackground(new Color(247, 194, 150));
     }//GEN-LAST:event_confirmTxtMouseEntered
 
     private void confirmTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseExited
-       
+        confirmBtn.setBackground(new Color(229,180,139));
     }//GEN-LAST:event_confirmTxtMouseExited
 
     private void updateTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateTxtMouseClicked
@@ -354,11 +359,11 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_updateTxtMouseClicked
 
     private void updateTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateTxtMouseEntered
-        
+        updateBtn.setBackground(new Color(247, 194, 150));
     }//GEN-LAST:event_updateTxtMouseEntered
 
     private void updateTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateTxtMouseExited
-      
+        updateBtn.setBackground(new Color(229,180,139));
     }//GEN-LAST:event_updateTxtMouseExited
 
     private void listTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTxtMouseClicked
@@ -366,11 +371,11 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_listTxtMouseClicked
 
     private void listTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTxtMouseEntered
-        
+        listBtn.setBackground(new Color(247, 194, 150));
     }//GEN-LAST:event_listTxtMouseEntered
 
     private void listTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTxtMouseExited
-        
+        listBtn.setBackground(new Color(229,180,139));
     }//GEN-LAST:event_listTxtMouseExited
 
     /**

@@ -7,7 +7,7 @@
 package Views;
 
 
-
+import java.awt.Color;
 
 /**
  *
@@ -15,10 +15,11 @@ package Views;
  */
 public class ConfirmReservation extends javax.swing.JDialog {
 
-    
+    int xMouse, yMouse;
     public ConfirmReservation(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(parent);
     }
     
 
@@ -184,31 +185,43 @@ public class ConfirmReservation extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseClicked
-       
+        this.setVisible(false);
     }//GEN-LAST:event_salirTxtMouseClicked
 
     private void salirTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseEntered
-       
+        salirBtn.setBackground(new Color(229, 127, 95));
+        salirTxt.setForeground(Color.white);
     }//GEN-LAST:event_salirTxtMouseEntered
 
     private void salirTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseExited
-       
+        salirBtn.setBackground(new Color(229, 180, 139));
+        salirTxt.setForeground(Color.black);
     }//GEN-LAST:event_salirTxtMouseExited
 
     private void barMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barMouseDragged
-       
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_barMouseDragged
 
     private void barMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barMousePressed
-        
+        xMouse = evt.getX();
+        yMouse = evt.getY();
     }//GEN-LAST:event_barMousePressed
 
     private void searchIDTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchIDTextFocusLost
-        
+        if (searchIDText.getText().trim().isEmpty()) {
+            searchIDText.setText("Introduzca el ID a buscar");
+            searchIDText.setForeground(new Color(204, 204, 204));
+        }
     }//GEN-LAST:event_searchIDTextFocusLost
 
     private void searchIDTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchIDTextMousePressed
-        
+        if (searchIDText.getText().equals("Introduzca el ID a buscar")) {
+            searchIDText.setText("");
+            searchIDText.setForeground(Color.black);
+
+        }
     }//GEN-LAST:event_searchIDTextMousePressed
 
     private void searchIDTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIDTextActionPerformed
@@ -220,11 +233,11 @@ public class ConfirmReservation extends javax.swing.JDialog {
     }//GEN-LAST:event_confirmTxtMouseClicked
 
     private void confirmTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseEntered
-        
+        confirmBtn.setBackground(new Color(247, 194, 150));
     }//GEN-LAST:event_confirmTxtMouseEntered
 
     private void confirmTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseExited
-        
+        confirmBtn.setBackground(new Color(229, 180, 139));
     }//GEN-LAST:event_confirmTxtMouseExited
 
     /**

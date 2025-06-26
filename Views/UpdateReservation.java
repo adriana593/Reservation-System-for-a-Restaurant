@@ -6,20 +6,21 @@
 
 package Views;
 
-
+import java.awt.Color;
 
 /**
  *
  * @author HP
  */
 public class UpdateReservation extends javax.swing.JDialog {
-   
+    int xMouse, yMouse;
     /**
      * Creates new form UpdateReservation
      */
     public UpdateReservation(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(parent);
     }
 
     /**
@@ -268,55 +269,84 @@ public class UpdateReservation extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseClicked
-        
+        this.setVisible(false);
     }//GEN-LAST:event_salirTxtMouseClicked
 
     private void salirTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseEntered
-        
+        salirBtn.setBackground(new Color(229, 127, 95));
+        salirTxt.setForeground(Color.white);
     }//GEN-LAST:event_salirTxtMouseEntered
 
     private void salirTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseExited
-        
+        salirBtn.setBackground(new Color(229, 180, 139));
+        salirTxt.setForeground(Color.black);
     }//GEN-LAST:event_salirTxtMouseExited
 
     private void barMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barMouseDragged
-       
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_barMouseDragged
 
     private void barMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barMousePressed
-       
+        xMouse = evt.getX();
+        yMouse = evt.getY();
     }//GEN-LAST:event_barMousePressed
 
     private void customerNameTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_customerNameTextFocusLost
-       
+        if (customerNameText.getText().trim().isEmpty()) {
+            customerNameText.setText("Ingresar el nombre del cliente");
+            customerNameText.setForeground(new Color(204, 204, 204));
+        }
     }//GEN-LAST:event_customerNameTextFocusLost
 
     private void customerNameTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerNameTextMousePressed
-       
+        if (customerNameText.getText().equalsIgnoreCase("Ingresar el nombre del cliente")) {
+            customerNameText.setText("");
+            customerNameText.setForeground(Color.black);
+        }
     }//GEN-LAST:event_customerNameTextMousePressed
 
     private void numberOfPeopleTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberOfPeopleTextFocusLost
-        
+        if (numberOfPeopleText.getText().trim().isEmpty()) {
+            numberOfPeopleText.setText("Ingresar la cantidad de personas");
+            numberOfPeopleText.setForeground(new Color(204, 204, 204));
+        }
     }//GEN-LAST:event_numberOfPeopleTextFocusLost
 
     private void numberOfPeopleTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_numberOfPeopleTextMousePressed
-        
+        if (numberOfPeopleText.getText().equalsIgnoreCase("Ingresar la cantidad de personas")) {
+            numberOfPeopleText.setText("");
+            numberOfPeopleText.setForeground(Color.black);
+        }
     }//GEN-LAST:event_numberOfPeopleTextMousePressed
 
     private void timeTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_timeTextFocusLost
-        
+        if (timeText.getText().trim().isEmpty()) {
+            timeText.setText("Ingresar la hora");
+            timeText.setForeground(new Color(204, 204, 204));
+        }
     }//GEN-LAST:event_timeTextFocusLost
 
     private void timeTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timeTextMousePressed
-        
+        if (timeText.getText().equalsIgnoreCase("Ingresar la hora")) {
+            timeText.setText("");
+            timeText.setForeground(Color.black);
+        }
     }//GEN-LAST:event_timeTextMousePressed
 
     private void dateTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dateTextFocusLost
-       
+        if (dateText.getText().trim().isEmpty()) {
+            dateText.setText("Ingresar la fecha");
+            dateText.setForeground(new Color(204, 204, 204));
+        }
     }//GEN-LAST:event_dateTextFocusLost
 
     private void dateTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateTextMousePressed
-        
+        if (dateText.getText().equalsIgnoreCase("Ingresar la fecha")) {
+            dateText.setText("");
+            dateText.setForeground(Color.black);
+        }
     }//GEN-LAST:event_dateTextMousePressed
 
     private void saveTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseClicked
@@ -324,11 +354,11 @@ public class UpdateReservation extends javax.swing.JDialog {
     }//GEN-LAST:event_saveTxtMouseClicked
 
     private void saveTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseEntered
-        
+        saveBtn.setBackground(new Color(247, 194, 150));
     }//GEN-LAST:event_saveTxtMouseEntered
 
     private void saveTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseExited
-        
+        saveBtn.setBackground(new Color(229, 180, 139));
     }//GEN-LAST:event_saveTxtMouseExited
 
     /**

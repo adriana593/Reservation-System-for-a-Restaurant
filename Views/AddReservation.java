@@ -7,7 +7,7 @@
 package Views;
 
 
-
+import java.awt.Color;
 
 /**
  *
@@ -16,11 +16,11 @@ package Views;
 public class AddReservation extends javax.swing.JDialog {
     
     
-    
+    int xMouse, yMouse;
     public AddReservation(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ;
+        setLocationRelativeTo(parent);
     }
 
     /**
@@ -299,31 +299,42 @@ public class AddReservation extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void outTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outTxtMouseClicked
-       
+        this.setVisible(false);
     }//GEN-LAST:event_outTxtMouseClicked
 
     private void outTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outTxtMouseEntered
-        
+        outBtn.setBackground(new Color(229, 127, 95));
+        outTxt.setForeground(Color.white);
     }//GEN-LAST:event_outTxtMouseEntered
 
     private void outTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_outTxtMouseExited
-        
+        outBtn.setBackground(new Color(229, 180, 139));
+        outTxt.setForeground(Color.black);
     }//GEN-LAST:event_outTxtMouseExited
 
     private void barMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barMouseDragged
-        
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_barMouseDragged
 
     private void barMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barMousePressed
-       
+        xMouse = evt.getX();
+        yMouse = evt.getY();
     }//GEN-LAST:event_barMousePressed
 
     private void idReservationTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_idReservationTextFocusLost
-        
+        if (idReservationText.getText().trim().isEmpty()) {
+            idReservationText.setText("Ingresar el ID de reserva");
+            idReservationText.setForeground(new Color(204,204,204));
+        }
     }//GEN-LAST:event_idReservationTextFocusLost
 
     private void idReservationTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idReservationTextMousePressed
-       
+        if (idReservationText.getText().equals("Ingresar el ID de reserva")) {
+            idReservationText.setText("");
+            idReservationText.setForeground(Color.black);
+        }
     }//GEN-LAST:event_idReservationTextMousePressed
 
     private void idReservationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idReservationTextActionPerformed
@@ -331,35 +342,59 @@ public class AddReservation extends javax.swing.JDialog {
     }//GEN-LAST:event_idReservationTextActionPerformed
 
     private void customerNameTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_customerNameTextFocusLost
-        
+        if (customerNameText.getText().trim().isEmpty()) {
+            customerNameText.setText("Ingresar el nombre del cliente");
+            customerNameText.setForeground(new Color(204,204,204));
+        }
     }//GEN-LAST:event_customerNameTextFocusLost
 
     private void customerNameTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerNameTextMousePressed
-        
+        if(customerNameText.getText().equalsIgnoreCase("Ingresar el nombre del cliente")){
+            customerNameText.setText("");
+            customerNameText.setForeground(Color.black);
+        }
     }//GEN-LAST:event_customerNameTextMousePressed
 
     private void numberOfPeopleTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numberOfPeopleTextFocusLost
-        
+        if (numberOfPeopleText.getText().trim().isEmpty()) {
+            numberOfPeopleText.setText("Ingresar la cantidad de personas");
+            numberOfPeopleText.setForeground(new Color(204,204,204));
+        }
     }//GEN-LAST:event_numberOfPeopleTextFocusLost
 
     private void numberOfPeopleTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_numberOfPeopleTextMousePressed
-        
+        if(numberOfPeopleText.getText().equalsIgnoreCase("Ingresar la cantidad de personas")){
+            numberOfPeopleText.setText("");
+            numberOfPeopleText.setForeground(Color.black);
+        }
     }//GEN-LAST:event_numberOfPeopleTextMousePressed
 
     private void timeTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_timeTextFocusLost
-       
+        if (timeText.getText().trim().isEmpty()) {
+            timeText.setText("Ingresar la hora");
+            timeText.setForeground(new Color(204,204,204));
+        }
     }//GEN-LAST:event_timeTextFocusLost
 
     private void timeTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timeTextMousePressed
-       
+        if(timeText.getText().equalsIgnoreCase("Ingresar la hora")){
+            timeText.setText("");
+            timeText.setForeground(Color.black);
+        }
     }//GEN-LAST:event_timeTextMousePressed
 
     private void dateTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dateTextFocusLost
-        
+        if (dateText.getText().trim().isEmpty()) {
+            dateText.setText("Ingresar la fecha");
+            dateText.setForeground(new Color(204,204,204));
+        }
     }//GEN-LAST:event_dateTextFocusLost
 
     private void dateTextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateTextMousePressed
-        
+        if(dateText.getText().equalsIgnoreCase("Ingresar la fecha")){
+            dateText.setText("");
+            dateText.setForeground(Color.black);
+        }
     }//GEN-LAST:event_dateTextMousePressed
 
     private void saveTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseClicked
@@ -367,11 +402,11 @@ public class AddReservation extends javax.swing.JDialog {
     }//GEN-LAST:event_saveTxtMouseClicked
 
     private void saveTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseEntered
-        
+        saveBtn.setBackground(new Color(247, 194, 150));
     }//GEN-LAST:event_saveTxtMouseEntered
 
     private void saveTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseExited
-        
+        saveBtn.setBackground(new Color(229, 180, 139));
     }//GEN-LAST:event_saveTxtMouseExited
 
     /**
