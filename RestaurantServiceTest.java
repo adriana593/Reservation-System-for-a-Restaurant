@@ -57,4 +57,20 @@ public class RestaurantServiceTest {
         Reservation confirmed = service.getReservations().get(0);
         assertEquals(EStatus.Confirmada, confirmed.getStatus());
     }
+    @Test
+    public void testCancelReservation() {
+        // Se agrega una reserva que se va a cancelar.
+        Reservation reservation = new Reservation("4", "Luisa Ruiz", 6, new Date(23, 4, 2025) , new Time(20, 15));
+        service.addReservation(reservation);
+        assertTrue(service.getReservations().contains(reservation));
+        assertEquals(1, service.getReservations().size()); 
+                
+        
+        // Se ejecuta la cancelación.
+        service.cancelReservation("4");
+        
+        // Según la implementación, se elimina la reserva.
+        assertTrue(service.getReservations().isEmpty()); 
+              
+    }
   } 
