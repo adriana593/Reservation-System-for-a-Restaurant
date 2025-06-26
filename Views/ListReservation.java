@@ -6,13 +6,17 @@
 
 package Views;
 
+import Domain.Reservation;
+import Services.RestaurantService;
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author HP
  */
 public class ListReservation extends javax.swing.JDialog {
+    private RestaurantService restaurantService = null;
     int xMouse , yMouse;
     /**
      * Creates new form ListReservation
@@ -21,6 +25,32 @@ public class ListReservation extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
+    }
+    public ListReservation(RestaurantService restaurantService){
+        this(null, true);
+        this.restaurantService = restaurantService;
+        
+        showTable();
+    }
+    public void showTable(){
+        String[] colsName = {"Id Reserva", "Nombre del cliente", "Número de Personas", 
+            "Fecha", "Hora", "Estado"};
+        
+        DefaultTableModel model = new DefaultTableModel(colsName,
+                restaurantService.getReservations().size());
+        
+        int countRow = 0;
+        for(Reservation reservation : restaurantService.getReservations()){
+            model.setValueAt(reservation.getIDReservation(), countRow, 0);
+            model.setValueAt(reservation.getCustomerName(), countRow, 1);
+            model.setValueAt(reservation.getNumberOfPeople(), countRow, 2);
+            model.setValueAt(reservation.getDate().toString(), countRow, 3);
+            model.setValueAt(reservation.getTime().toString(), countRow, 4);
+            model.setValueAt(reservation.getStatus(), countRow++, 5);        
+        }
+        
+        table.setModel(model);
+        
     }
 
     /**
@@ -41,6 +71,8 @@ public class ListReservation extends javax.swing.JDialog {
         table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         mainBackground.setBackground(new java.awt.Color(255, 255, 255));
         mainBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

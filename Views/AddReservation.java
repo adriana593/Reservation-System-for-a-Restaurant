@@ -7,20 +7,29 @@
 package Views;
 
 
+import Domain.Date;
+import Domain.Reservation;
+import Domain.Time;
+import Services.RestaurantService;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author HP
  */
 public class AddReservation extends javax.swing.JDialog {
-    
+    private RestaurantService restaurantService = null;
     
     int xMouse, yMouse;
     public AddReservation(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
+    }
+    public AddReservation(RestaurantService restaurantService){
+        this(null, true);
+        this.restaurantService = restaurantService;
     }
 
     /**
@@ -56,6 +65,8 @@ public class AddReservation extends javax.swing.JDialog {
         saveTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -398,7 +409,31 @@ public class AddReservation extends javax.swing.JDialog {
     }//GEN-LAST:event_dateTextMousePressed
 
     private void saveTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseClicked
-
+        if(checkComponent() == true){
+            String idReservation = idReservationText.getText().trim();
+            int cantidadPersonas = Integer.parseInt(numberOfPeopleText.getText().trim());
+            String nombre = customerNameText.getText().trim();
+            
+            String[] dateParts = dateText.getText().trim().split("-");
+            int day = Integer.parseInt(dateParts[0]);
+            int month = Integer.parseInt(dateParts[1]);
+            int year = Integer.parseInt(dateParts[2]);
+            
+            
+            Date date = new Date(day, month, year);
+            
+            String[] timeParts = timeText.getText().trim().split(":");
+            int hour = Integer.parseInt(timeParts[0]);
+            int minute = Integer.parseInt(timeParts[1]);
+            
+            Time time = new Time(hour, minute);
+            
+            Reservation reservation = new Reservation(idReservation, nombre, cantidadPersonas, date, time);
+            restaurantService.addReservation(reservation);
+            clear();
+            
+            JOptionPane.showMessageDialog(rootPane,"Su reservación esta pendiente");
+        }   
     }//GEN-LAST:event_saveTxtMouseClicked
 
     private void saveTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseEntered
@@ -408,7 +443,31 @@ public class AddReservation extends javax.swing.JDialog {
     private void saveTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseExited
         saveBtn.setBackground(new Color(229, 180, 139));
     }//GEN-LAST:event_saveTxtMouseExited
-
+         
+        private boolean checkComponent(){
+        if(idReservationText.getText().equals("") ||
+           customerNameText.getText().equals("") ||
+           numberOfPeopleText.getText().equals("") || 
+           dateText.getText().equals("") || 
+           timeText.getText().equals(""))
+            return false;
+        return true;
+    }
+    
+    private void clear(){
+        
+        idReservationText.setText("Ingresar el ID de reserva");
+        idReservationText.setForeground(new Color(204,204,204));
+        customerNameText.setText("Ingresar el nombre del cliente");
+        customerNameText.setForeground(new Color(204,204,204));
+        numberOfPeopleText.setText("Ingresar la cantidad de personas");
+        numberOfPeopleText.setForeground(new Color(204,204,204));
+        timeText.setText("Ingresar la hora");
+        timeText.setForeground(new Color(204,204,204));
+        dateText.setText("Ingresar la fecha");
+        dateText.setForeground(new Color(204,204,204));
+               
+    }
     /**
      * @param args the command line arguments
      */

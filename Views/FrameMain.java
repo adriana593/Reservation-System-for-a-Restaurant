@@ -7,6 +7,7 @@
 package Views;
 
 
+import Services.RestaurantService;
 import java.awt.Color;
 
 /**
@@ -14,7 +15,8 @@ import java.awt.Color;
  * @author HP
  */
 public class FrameMain extends javax.swing.JFrame {
-       
+    private RestaurantService restaurantService = new RestaurantService();
+        
     int xMouse , yMouse;
     public FrameMain() {
         initComponents();
@@ -47,6 +49,8 @@ public class FrameMain extends javax.swing.JFrame {
         listTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -319,7 +323,8 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_moveFrameMousePressed
 
     private void cancelTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelTxtMouseClicked
-       
+       CancelReservation form = new CancelReservation(restaurantService);
+       form.setVisible(true);
     }//GEN-LAST:event_cancelTxtMouseClicked
 
     private void cancelTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelTxtMouseEntered
@@ -331,7 +336,8 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelTxtMouseExited
 
     private void addTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTxtMouseClicked
-        
+        AddReservation form = new AddReservation(restaurantService);
+        form.setVisible(true);
     }//GEN-LAST:event_addTxtMouseClicked
 
     private void addTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTxtMouseEntered
@@ -343,7 +349,8 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_addTxtMouseExited
 
     private void confirmTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseClicked
-        
+        ConfirmReservation form = new ConfirmReservation(restaurantService);
+        form.setVisible(true);        
     }//GEN-LAST:event_confirmTxtMouseClicked
 
     private void confirmTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseEntered
@@ -355,7 +362,8 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmTxtMouseExited
 
     private void updateTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateTxtMouseClicked
-        
+        SearchUpReservation form = new SearchUpReservation(restaurantService);
+        form.setVisible(true);
     }//GEN-LAST:event_updateTxtMouseClicked
 
     private void updateTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateTxtMouseEntered
@@ -367,7 +375,8 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_updateTxtMouseExited
 
     private void listTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTxtMouseClicked
-        
+        ListReservation form = new ListReservation(restaurantService);
+        form.setVisible(true);
     }//GEN-LAST:event_listTxtMouseClicked
 
     private void listTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTxtMouseEntered

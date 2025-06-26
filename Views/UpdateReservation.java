@@ -6,13 +6,21 @@
 
 package Views;
 
+import Domain.Date;
+import Domain.Reservation;
+import Domain.Time;
+import Services.RestaurantService;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author HP
  */
 public class UpdateReservation extends javax.swing.JDialog {
+    private RestaurantService restaurantService = null;
+    private Reservation reservation = null;
+    
     int xMouse, yMouse;
     /**
      * Creates new form UpdateReservation
@@ -21,6 +29,17 @@ public class UpdateReservation extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
+    }
+    public UpdateReservation(RestaurantService restaurantService, Reservation reservation) {
+        this(null, true);
+        this.restaurantService = restaurantService;
+        
+        this.reservation = reservation;
+        this.customerNameText.setText(this.reservation.getCustomerName());
+        this.numberOfPeopleText.setText(String.valueOf(this.reservation.getNumberOfPeople()));
+        this.timeText.setText(this.reservation.getTime().toString());
+        this.dateText.setText(this.reservation.getDate().toString());
+
     }
 
     /**
@@ -53,6 +72,8 @@ public class UpdateReservation extends javax.swing.JDialog {
         saveTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -350,7 +371,33 @@ public class UpdateReservation extends javax.swing.JDialog {
     }//GEN-LAST:event_dateTextMousePressed
 
     private void saveTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseClicked
-        
+        if (checkComponent() == true) {
+
+            int cantidadPersonas = Integer.parseInt(numberOfPeopleText.getText().trim());
+            String nombre = customerNameText.getText().trim();
+
+            String[] dateParts = dateText.getText().trim().split("-");
+            int year = Integer.parseInt(dateParts[2]);
+            int month = Integer.parseInt(dateParts[1]);
+            int day = Integer.parseInt(dateParts[0]);
+
+            Date date = new Date(day, month, year);
+
+            String[] timeParts = timeText.getText().trim().split(":");
+            int hour = Integer.parseInt(timeParts[0]);
+            int minute = Integer.parseInt(timeParts[1]);
+
+            Time time = new Time(hour, minute);
+            if(restaurantService.updateReservation(this.reservation.getIDReservation(), nombre, cantidadPersonas, date, time)){
+               
+               JOptionPane.showMessageDialog(rootPane, "Su reserva ha sido actualizada");
+               clear();
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "La reserva no ha sido encontrada");
+            }
+
+            this.setVisible(false);         
+        }
     }//GEN-LAST:event_saveTxtMouseClicked
 
     private void saveTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveTxtMouseEntered
@@ -361,6 +408,23 @@ public class UpdateReservation extends javax.swing.JDialog {
         saveBtn.setBackground(new Color(229, 180, 139));
     }//GEN-LAST:event_saveTxtMouseExited
 
+    private boolean checkComponent() {
+        if (customerNameText.getText().equals("") || numberOfPeopleText.getText().equals("") || dateText.getText().equals("") || timeText.getText().equals("")) {
+            return false;
+        }
+        return true;
+    }
+
+    private void clear() {
+        customerNameText.setText("Ingresar el nombre del cliente");
+        customerNameText.setForeground(Color.gray);
+        numberOfPeopleText.setText("Ingresar la cantidad de personas");
+        numberOfPeopleText.setForeground(Color.gray);
+        dateText.setText("Ingresar la hora");
+        dateText.setForeground(Color.gray);
+        timeText.setText("Ingresar la fecha");
+        timeText.setForeground(Color.gray);
+    }
     /**
      * @param args the command line arguments
      */

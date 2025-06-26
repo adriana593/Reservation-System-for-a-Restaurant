@@ -7,19 +7,25 @@
 package Views;
 
 
+import Services.RestaurantService;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author HP
  */
 public class ConfirmReservation extends javax.swing.JDialog {
-
+    private RestaurantService restaurantService = null;
     int xMouse, yMouse;
     public ConfirmReservation(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
+    }
+    public ConfirmReservation(RestaurantService restaurantService) {
+        this(null, true);
+        this.restaurantService = restaurantService;
     }
     
 
@@ -45,6 +51,8 @@ public class ConfirmReservation extends javax.swing.JDialog {
         confirmTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -229,7 +237,13 @@ public class ConfirmReservation extends javax.swing.JDialog {
     }//GEN-LAST:event_searchIDTextActionPerformed
 
     private void confirmTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseClicked
-        
+        String id = searchIDText.getText();
+
+        if (restaurantService.confirmReservation(id)) {
+            JOptionPane.showMessageDialog(rootPane, "La reserva ha sido confirmada");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "La reserva no ha sido encontrada");
+        }
     }//GEN-LAST:event_confirmTxtMouseClicked
 
     private void confirmTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseEntered

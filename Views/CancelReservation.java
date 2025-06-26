@@ -7,21 +7,26 @@
 package Views;
 
 
+import Services.RestaurantService;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author HP
  */
 public class CancelReservation extends javax.swing.JDialog {
-
+    private RestaurantService restaurantService = null;
     int xMouse, yMouse;
     public CancelReservation(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
     }
-    
+    public CancelReservation(RestaurantService restaurantService) {
+        this(null, true);
+        this.restaurantService = restaurantService;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +50,8 @@ public class CancelReservation extends javax.swing.JDialog {
         confirmTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -228,7 +235,14 @@ public class CancelReservation extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelTextActionPerformed
 
     private void confirmTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseClicked
-        
+        String id = cancelText.getText();
+        boolean res = restaurantService.cancelReservation(id);
+        if (res) {
+
+            JOptionPane.showMessageDialog(rootPane, "La reservacion " + id + " ha sido cancelada.");
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "La reservacion " + id + " no ha sido encontrada");
+        }
     }//GEN-LAST:event_confirmTxtMouseClicked
 
     private void confirmTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseEntered

@@ -6,13 +6,17 @@
 
 package Views;
 
+import Domain.Reservation;
+import Services.RestaurantService;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author HP
  */
 public class SearchUpReservation extends javax.swing.JDialog {
+    private RestaurantService restaurantService = null;
     int xMouse, yMouse;
     /**
      * Creates new form SearchUpReservation
@@ -21,6 +25,10 @@ public class SearchUpReservation extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
+    }
+    public SearchUpReservation(RestaurantService restaurantService) {
+        this(null, true);
+        this.restaurantService = restaurantService;
     }
 
     /**
@@ -45,6 +53,8 @@ public class SearchUpReservation extends javax.swing.JDialog {
         confirmTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -228,7 +238,18 @@ public class SearchUpReservation extends javax.swing.JDialog {
     }//GEN-LAST:event_searchTextActionPerformed
 
     private void confirmTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseClicked
-        
+        String id = searchText.getText();
+        Reservation res = restaurantService.getReservation(id);
+
+        if (res != null) {
+            UpdateReservation form = new UpdateReservation(restaurantService, res);
+            form.setVisible(true);
+
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "La reserva no ha sido encontrada");
+
+        }
     }//GEN-LAST:event_confirmTxtMouseClicked
 
     private void confirmTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmTxtMouseEntered
