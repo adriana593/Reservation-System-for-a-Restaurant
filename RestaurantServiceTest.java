@@ -44,4 +44,17 @@ public class RestaurantServiceTest {
         assertEquals(date, updated.getDate());
         assertEquals(time, updated.getTime());
     } 
+    @Test
+    public void testConfirmReservation() {
+        // Se agrega una reserva con estado por defecto 'Pendiente'.
+        Reservation reservation = new Reservation("3", "Carlos Lopez", 2, new Date(3, 4, 2025), new Time(17, 00) );
+        service.addReservation(reservation);
+        
+        // Se ejecuta la confirmación.
+        service.confirmReservation("3");
+        
+        // Se verifica que el estado de la reserva haya cambiado a 'Confirmada'.
+        Reservation confirmed = service.getReservations().get(0);
+        assertEquals(EStatus.Confirmada, confirmed.getStatus());
+    }
   } 
