@@ -8,5 +8,5 @@ public interface IServices {
     boolean cancelReservation(String id);
     Reservation getReservation(String id);
     
-    
+    //Single Responsability Principle:  Cada método define una responsabilidad específica relacionada con las reservas.
 }
